@@ -1,159 +1,186 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="https://img.icons8.com/?size=100&id=ynDvrHjgusdl&format=png&color=000000" type="image/png">
-    <title>Blog</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="vendors/linericon/style.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Custom CSS to handle overflow -->
-    <style>
-        /* Ensure body and html have no overflow */
-        html, body {
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="https://img.icons8.com/?size=100&id=ynDvrHjgusdl&format=png&color=000000" type="image/png">
+  <title>Blog</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="vendors/linericon/style.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Step 1: WordPress Theme Modifications (CSS) */
 
-        /* Ensure the blog posts container does not overflow */
-        .blog_posts_area {
-            overflow: hidden;
-        }
+    body.iframe-content .site-header,
+    body.iframe-content .site-footer {
+      display: none;
+    }
 
-        /* Ensure iframes are responsive and fit within the container */
-        #blog-posts-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-        }
+    body.iframe-content .site-content {
+      margin-top: 0;
+    }
 
-        #blog-posts-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    </style>
+    /* Additional styles for the HTML page */
+
+    html, body {
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .blog_posts_area {
+      overflow: hidden;
+    }
+
+    .iframe-container {
+      position: relative;
+      padding-bottom: 75%; /* Adjusted to make the iframe longer */
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .iframe-container.active {
+      display: block;
+    }
+
+    .next-blog-btn {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+  </style>
 </head>
-
 <body class="blog_version">
 
-    <!--================ Start Header Area =================-->
-    <header class="header_area">
-        <div class="main_menu">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="img/suma_new_logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav justify-content-end">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-                            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!--================ End Header Area =================-->
-
-    <!--================ Start Blog Posts Area =================-->
-    <section class="blog_posts_area">
+  <header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-            <div id="blog-posts-container">
-                <!-- Existing Blog Posts -->
-                <iframe src="https://sumanreddy568.wordpress.com/2024/08/30/docker-containerization-of-test-suites/" frameborder="0" allowfullscreen></iframe>
-                <!-- Example: Adding a new blog post -->
-                <!-- <iframe src="https://example.com/new-blog-post"></iframe> -->
-            </div>
+          <a class="navbar-brand logo_h" href="index.html"><img src="img/suma_new_logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav justify-content-end">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+              <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
         </div>
-    </section>
-    <!--================ End Blog Posts Area =================-->
+      </nav>
+    </div>
+  </header>
 
-    <!--================ Start Footer Area =================-->
-    <footer class="footer_area" style="margin-top: 50px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="footer_top flex-column">
-                        <div class="footer_logo">
-                            <a href="#">
-                                <img src="img/suma_new_logo.png" alt="">
-                            </a>
-                            <h4>Follow Me</h4>
-                        </div>
-                        <div class="footer_social">
-                            <a href="https://www.linkedin.com/in/sumanreddy568/"><i class="fa fa-linkedin"></i></a>
-                            <a href="https://github.com/SumanReddy568"><i class="fa fa-git"></i></a>
-                            <a href="https://github.com/SumanReddy568"><i class="fa fa-instagram"></i></a>
-                            <!-- <a href="#"><i class="fa fa-behance"></i></a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row footer_bottom justify-content-center">
-                <p class="col-lg-8 col-sm-12 footer-text">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">Suman</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
+  <section class="blog_posts_area">
+    <div class="container">
+      <div id="blog-posts-container">
+        <div class="iframe-container active">
+          <iframe 
+            src="https://sumanreddy568.wordpress.com/2024/08/30/docker-containerization-of-test-suites/?iframe=true" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
         </div>
-    </footer>
-    <!--================ End Footer Area =================-->
+        <div class="iframe-container">
+          <iframe 
+            src="https://sumanreddy568.wordpress.com/2024/08/30/bash-scripting-for-automation-testers-a-guide-to-streamlining-your-workflow/?iframe=true" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/stellar.js"></script>
-    <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-    <script src="vendors/isotope/isotope-min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/theme.js"></script>
-    <!-- Script to add new blog posts -->
-    <script>
-        function addBlogPost(url) {
-            var container = document.getElementById('blog-posts-container');
-            var iframe = document.createElement('iframe');
-            iframe.src = url;
-            iframe.frameBorder = "0";
-            iframe.allowFullscreen = true;
-            container.appendChild(iframe);
-        }
+      <a id="next-blog-btn" class="next-blog-btn">Next Blog</a>
+    </div>
+  </section>
 
-        // Example: Adding a new blog post
-        // addBlogPost('https://example.com/another-blog-post');
-    </script>
+  <footer class="footer_area" style="margin-top: 50px;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="footer_top flex-column">
+            <div class="footer_logo">
+              <a href="#">
+                <img src="img/suma_new_logo.png" alt="">
+              </a>
+              <h4>Follow Me</h4>
+            </div>
+            <div class="footer_social">
+              <a href="https://www.linkedin.com/in/sumanreddy568/"><i class="fa fa-linkedin"></i></a>
+              <a href="https://github.com/SumanReddy568"><i class="fa fa-git"></i></a>
+              <a href="https://github.com/SumanReddy568"><i class="fa fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row footer_bottom justify-content-center">
+        <p class="col-lg-8 col-sm-12 footer-text">
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">Suman</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/stellar.js"></script>
+  <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+  <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+  <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+  <script src="vendors/isotope/isotope-min.js"></script>
+  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="js/mail-script.js"></script>
+  <script src="js/theme.js"></script>
+  <script>
+    // Step 1: WordPress Theme Modifications (JavaScript)
+
+    function addIframeContentClass() {
+      if (window.location.search.includes('iframe=true')) {
+        document.body.classList.add('iframe-content');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', addIframeContentClass);
+
+    // JavaScript to handle the "Next Blog" button functionality
+    const iframes = document.querySelectorAll('.iframe-container');
+    let currentIframe = 0;
+
+    document.getElementById('next-blog-btn').addEventListener('click', function() {
+      iframes[currentIframe].classList.remove('active');
+      currentIframe = (currentIframe + 1) % iframes.length;
+      iframes[currentIframe].classList.add('active');
+    });
+  </script>
 </body>
 </html>
