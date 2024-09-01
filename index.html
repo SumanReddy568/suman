@@ -120,6 +120,24 @@
 </head>
 
 <body>
+	<script>
+        // Function to scroll down and then back up
+        window.onload = function() {
+            // Scroll down by 100 pixels
+            window.scrollTo({
+                top: 600,
+                behavior: 'smooth'
+            });
+
+            // Set a delay before scrolling back up
+            setTimeout(function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 2000); // Adjust the delay (2000ms = 2 seconds) as needed
+        };
+    </script>
 	<div class="modal-backdrop">
         <div class="modal-content">
             <h2>Best Experience on Desktop</h2>
