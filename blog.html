@@ -13,8 +13,7 @@
   <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Step 1: WordPress Theme Modifications (CSS) */
-
+    /* Hiding the header and footer for iframe content */
     body.iframe-content .site-header,
     body.iframe-content .site-footer {
       display: none;
@@ -24,8 +23,7 @@
       margin-top: 0;
     }
 
-    /* Additional styles for the HTML page */
-
+    /* General styles */
     html, body {
       overflow-x: hidden;
       margin: 0;
@@ -38,12 +36,12 @@
 
     .iframe-container {
       position: relative;
-      padding-bottom: 75%; /* Adjusted to make the iframe longer */
+      padding-bottom: 75%; /* Aspect ratio */
       height: 0;
       overflow: hidden;
       max-width: 100%;
       margin-bottom: 20px;
-      display: none;
+      display: none; /* Hide by default */
     }
 
     .iframe-container iframe {
@@ -55,25 +53,47 @@
       border: 0;
     }
 
+    /* Active iframe container */
     .iframe-container.active {
       display: block;
     }
 
+    /* Button styling */
     .next-blog-btn {
       margin-top: 20px;
       display: inline-block;
-      background-color: #000;
-      color: #fff;
+      background-color: #000000; /* Black background */
+      color: #ffffff; /* White text */
       padding: 10px 20px;
       text-align: center;
-      cursor: pointer;
+      cursor: pointer; /* Make sure the cursor is always a pointer */
       border-radius: 5px;
       text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+      user-select: none; /* Prevent text selection */
+      outline: none; /* Remove focus outline */
     }
+
+    /* Hover effect for the button */
+    .next-blog-btn:hover {
+      background-color: #f0f0f0; /* Light gray background */
+      color: #000000; /* Black text */
+      transform: scale(1.05); /* Slight zoom effect */
+      border: 1px solid #000; /* Add a border for contrast */
+    }
+
+    /* Focus state to prevent any outline or text cursor */
+    .next-blog-btn:focus {
+      outline: none;
+      text-decoration: none;
+    }
+
   </style>
 </head>
 <body class="blog_version">
 
+  <!-- Header -->
   <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
@@ -98,6 +118,7 @@
     </div>
   </header>
 
+  <!-- Blog Posts Area -->
   <section class="blog_posts_area">
     <div class="container">
       <div id="blog-posts-container">
@@ -124,10 +145,12 @@
         </div>
       </div>
 
+      <!-- Next Blog Button -->
       <a id="next-blog-btn" class="next-blog-btn">Next Blog</a>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="footer_area" style="margin-top: 50px;">
     <div class="container">
       <div class="row justify-content-center">
@@ -155,6 +178,7 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/popper.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -168,8 +192,7 @@
   <script src="js/mail-script.js"></script>
   <script src="js/theme.js"></script>
   <script>
-    // Step 1: WordPress Theme Modifications (JavaScript)
-
+    // Function to handle iframe content
     function addIframeContentClass() {
       if (window.location.search.includes('iframe=true')) {
         document.body.classList.add('iframe-content');
@@ -178,7 +201,7 @@
 
     document.addEventListener('DOMContentLoaded', addIframeContentClass);
 
-    // JavaScript to handle the "Next Blog" button functionality
+    // Handle "Next Blog" button functionality
     const iframes = document.querySelectorAll('.iframe-container');
     let currentIframe = 0;
 
