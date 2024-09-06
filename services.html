@@ -19,6 +19,45 @@
 </head>
 
 <body>
+    <button id="scrollDownBtn" title="Scroll Down">
+		&#x2193;
+	</button>
+	<script>
+        // Scroll Down Button
+        document.getElementById("scrollDownBtn").addEventListener("click", function () {
+            const scrollHeight = document.documentElement.scrollHeight;
+            const currentScroll = window.pageYOffset;
+            const windowHeight = window.innerHeight;
+
+            // Scroll by one viewport height each time, or until reaching the bottom
+            if (currentScroll + windowHeight < scrollHeight) {
+                window.scrollTo({
+                    top: currentScroll + windowHeight,
+                    behavior: "smooth"
+                });
+            } else {
+                window.scrollTo({
+                    top: scrollHeight,
+                    behavior: "smooth"
+                });
+            }
+        });
+
+        // Show or hide the button based on the scroll position
+        window.addEventListener("scroll", function () {
+            const scrollDownBtn = document.getElementById("scrollDownBtn");
+            const currentScroll = window.pageYOffset;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const windowHeight = window.innerHeight;
+
+            // Hide button when at the bottom of the page
+            if (currentScroll + windowHeight >= scrollHeight) {
+                scrollDownBtn.classList.add("hidden");
+            } else {
+                scrollDownBtn.classList.remove("hidden");
+            }
+        });
+    </script>
 
 	<!--================ Start Header Area =================-->
 	<header class="header_area">
@@ -40,14 +79,6 @@
 							<li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
 							<li class="nav-item active"><a class="nav-link" href="services.html">Services</a></li>
 							<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                            <!-- <li class="nav-item submenu dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                 aria-expanded="false">Blog</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                                </ul>
-                            </li> -->
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 						</ul>
 					</div>
@@ -79,12 +110,6 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-8 text-center">
 					<div class="main_title">
-						<!-- <h2>Core Competencies</h2> -->
-						<!-- <p>
-							Seamlessly automating, securing, and connecting systems for optimal performance and
-							innovation.
-						</p> -->
-
 					</div>
 				</div>
 			</div>
@@ -226,25 +251,19 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12">
                     <div class="subscription_box text-center">
-                        <h2 class="text-uppercase text-white">get update from anywhere</h2>
-                        <p class="text-white">
-                            Bearing Void gathering light light his eavening unto dont afraid. 
-                        </p>
-                        <div class="subcribe-form" id="mc_embed_signup">
-                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
-                                <input name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
-                                <button class="primary-btn hover d-inline">Get Started</button>
-                                <div class="info"></div>
-                            </form>
-                        </div>
+                        <h2 class="text-uppercase text-white">Get update from anywhere</h2>
+                        <button id="subscribe-btn" class="primary-btn hover d-inline mt-3">Subscribe</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script type="text/javascript">
+        document.getElementById('subscribe-btn').addEventListener('click', function() {
+            window.location.href = 'subscribe.html'; 
+        });
+    </script>
     <!--================ End Newsletter Area =================-->
         
         <!--================Footer Area =================-->
