@@ -3490,7 +3490,7 @@ html, body {
 /* Hover effect for the button */
 .next-blog-btn:hover {
   background-color: #f0f0f0; /* Light gray background */
-  color: #000000; /* Black text */
+  color: #d6c90f; /* Black text */
   transform: scale(1.05); /* Slight zoom effect */
   border: 1px solid #000; /* Add a border for contrast */
 }
@@ -3572,6 +3572,79 @@ html, body {
 }
 .content_area {
   margin-bottom: 20px; /* Space below this div */
+}
+/* Blog container scroll styling */
+#blog-posts-container {
+  overflow-y: auto;
+  height: 100vh;
+  width: 90vw;
+  /* Set width to 90% of the viewport width */
+  max-width: 1200px;
+  /* Maximum width to ensure it doesn't exceed a reasonable size */
+  margin: 0 auto;
+  /* Center the container */
+  scrollbar-width: none;
+  /* Hide scrollbar in Firefox */
+}
+
+#blog-posts-container::-webkit-scrollbar {
+  width: 0;
+  /* Hide scrollbar in WebKit-based browsers */
+}
+
+/* Show the scrollbar while scrolling */
+#blog-posts-container.show-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+#blog-posts-container.show-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+/* Iframe container styling */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  /* Full width of the blog container */
+  display: none;
+  margin: 0 auto;
+  /* Center the iframe container */
+}
+
+.iframe-container.active {
+  display: block;
+}
+
+.iframe-container iframe {
+  width: 100%;
+  /* Ensure iframe fits the container width */
+  border: 0;
+}
+
+/* Footer stays at the bottom */
+.footer_area {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Hide scrollbar on container */
+#blog-posts-container::-webkit-scrollbar {
+  width: 0;
+  /* Hide scrollbar */
+}
+
+#blog-posts-container {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+#blog-posts-container::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 /* End Footer Area css
 ============================================================================================ */
