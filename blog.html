@@ -1,5 +1,6 @@
-hi<!doctype html>
+<!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,7 +13,54 @@ hi<!doctype html>
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
+<button id="scrollDownBtn" title="Scroll Down">
+  &#x2193;
+</button>
+<script>
+  // Scroll Down Button
+  document.getElementById("scrollDownBtn").addEventListener("click", function () {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const currentScroll = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+
+    // Scroll by one viewport height each time, or until reaching the bottom
+    if (currentScroll + windowHeight < scrollHeight) {
+      window.scrollTo({
+        top: currentScroll + windowHeight,
+        behavior: "smooth"
+      });
+    } else {
+      window.scrollTo({
+        top: scrollHeight,
+        behavior: "smooth"
+      });
+    }
+  });
+
+  // Show or hide the button based on the scroll position
+  window.addEventListener("scroll", function () {
+    const scrollDownBtn = document.getElementById("scrollDownBtn");
+    const currentScroll = window.pageYOffset;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+
+    // Hide button when at the bottom of the page
+    if (currentScroll + windowHeight >= scrollHeight) {
+      scrollDownBtn.classList.add("hidden");
+    } else {
+      scrollDownBtn.classList.remove("hidden");
+    }
+  });
+</script>
+
 <body class="blog_version">
   <!-- Header -->
   <header class="header_area">
@@ -27,7 +75,6 @@ hi<!doctype html>
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav justify-content-end">
-              <!-- Home Button Added -->
               <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
               <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
@@ -44,32 +91,29 @@ hi<!doctype html>
   <!-- Blog Posts Area -->
   <section class="blog_posts_area">
     <div class="container">
+      <!-- Blog post container with hidden scroll bar -->
       <div id="blog-posts-container">
         <div class="iframe-container active">
-          <iframe 
-            src="https://sumanreddy568.wordpress.com/2024/08/30/docker-containerization-of-test-suites/?iframe=true" 
-            frameborder="0" 
+          <iframe
+            src="https://sumanreddy568.wordpress.com/2024/08/30/docker-containerization-of-test-suites/?iframe=true"
             allowfullscreen>
           </iframe>
         </div>
         <div class="iframe-container">
-          <iframe 
-            src="https://sumanreddy568.wordpress.com/2024/08/30/bash-scripting-for-automation-testers-a-guide-to-streamlining-your-workflow/?iframe=true" 
-            frameborder="0" 
+          <iframe
+            src="https://sumanreddy568.wordpress.com/2024/08/30/bash-scripting-for-automation-testers-a-guide-to-streamlining-your-workflow/?iframe=true"
             allowfullscreen>
           </iframe>
         </div>
         <div class="iframe-container">
-          <iframe 
-            src="https://sumanreddy568.wordpress.com/2024/09/01/understanding-owasp-zap-a-comprehensive-guide-to-web-application-security-testing/?iframe=true" 
-            frameborder="0" 
+          <iframe
+            src="https://sumanreddy568.wordpress.com/2024/09/01/understanding-owasp-zap-a-comprehensive-guide-to-web-application-security-testing/?iframe=true"
             allowfullscreen>
           </iframe>
         </div>
         <div class="iframe-container">
-          <iframe 
-            src="https://sumanreddy568.wordpress.com/2024/09/07/shift-left-testing-an-end-to-end-guide/?iframe=true" 
-            frameborder="0" 
+          <iframe
+            src="https://sumanreddy568.wordpress.com/2024/09/07/shift-left-testing-an-end-to-end-guide/?iframe=true"
             allowfullscreen>
           </iframe>
         </div>
@@ -102,7 +146,9 @@ hi<!doctype html>
       </div>
       <div class="row footer_bottom justify-content-center">
         <p class="col-lg-8 col-sm-12 footer-text">
-          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">Suman</a>
+          Copyright &copy;
+          <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">Suman</a>
         </p>
       </div>
     </div>
@@ -121,22 +167,58 @@ hi<!doctype html>
   <script src="js/jquery.ajaxchimp.min.js"></script>
   <script src="js/mail-script.js"></script>
   <script src="js/theme.js"></script>
+
   <script>
-    // Function to handle iframe content
-    function addIframeContentClass() {
-      if (window.location.search.includes('iframe=true')) {
-        document.body.classList.add('iframe-content');
-      }
-    }
-    document.addEventListener('DOMContentLoaded', addIframeContentClass);
     const iframes = document.querySelectorAll('.iframe-container');
     let currentIframe = 0;
 
-    document.getElementById('next-blog-btn').addEventListener('click', function() {
+    // Next Blog Button
+    document.getElementById('next-blog-btn').addEventListener('click', function () {
       iframes[currentIframe].classList.remove('active');
       currentIframe = (currentIframe + 1) % iframes.length;
       iframes[currentIframe].classList.add('active');
     });
+
+    const blogContainer = document.getElementById('blog-posts-container');
+    let scrollTimeout;
+
+    // Show container scrollbar when scrolling
+    blogContainer.addEventListener('scroll', () => {
+      blogContainer.classList.add('show-scrollbar');
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        blogContainer.classList.remove('show-scrollbar');
+      }, 1000); // Hide scrollbar after 1 second of inactivity
+    });
+
+    // Switch to the next blog when scrolling near the footer
+    blogContainer.addEventListener('scroll', () => {
+      const footer = document.querySelector('.footer_area');
+      const footerOffset = footer.getBoundingClientRect().top;
+      const containerBottom = blogContainer.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+
+      if (footerOffset < viewportHeight + 100 && containerBottom >= footerOffset) { // 100px from the bottom
+        iframes[currentIframe].classList.remove('active');
+        currentIframe = (currentIframe + 1) % iframes.length;
+        iframes[currentIframe].classList.add('active');
+      }
+    });
+
+    // Dynamically resize iframe based on content
+    const resizeIframe = () => {
+      iframes.forEach((iframeContainer) => {
+        const iframe = iframeContainer.querySelector('iframe');
+        iframe.onload = function () {
+          iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+          iframeContainer.style.width = Math.max(window.innerWidth * 0.9, iframe.contentWindow.document.body.scrollWidth) + 'px'; // Ensure the container width is large
+        };
+      });
+    };
+
+    // Call resize function on load
+    window.addEventListener('load', resizeIframe);
   </script>
 </body>
+
 </html>
