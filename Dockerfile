@@ -13,5 +13,8 @@ COPY . .
 # Expose port 80 to the host machine
 EXPOSE 80
 
+# Add a simple healthcheck
+HEALTHCHECK CMD curl --fail http://localhost:80 || exit 1
+
 # Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]
