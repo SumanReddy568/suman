@@ -10,6 +10,9 @@ RUN rm -rf ./*
 # Copy the project files from your host to the Nginx HTML folder
 COPY . .
 
+# Copy custom nginx configuration for reverse proxy and routing
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Expose port 80 to the host machine
 EXPOSE 80
 
